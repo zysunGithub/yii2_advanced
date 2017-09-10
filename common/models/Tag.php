@@ -84,7 +84,7 @@ class Tag extends \yii\db\ActiveRecord
             {
                 //更新标签
                 $atag->frequency += 1;
-                $aTag->save();
+                $atag->save();
             }
         }
 

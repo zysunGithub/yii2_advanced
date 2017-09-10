@@ -16,21 +16,37 @@ $this->params['breadcrumbs'][] = $this->title;
     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
 
     <p>
-        <?= Html::a('Create Post', ['create'], ['class' => 'btn btn-success']) ?>
+        <?= Html::a('创建', ['create'], ['class' => 'btn btn-success']) ?>
     </p>
     <?= GridView::widget([
         'dataProvider' => $dataProvider,
         'filterModel' => $searchModel,
         'columns' => [
-            ['class' => 'yii\grid\SerialColumn'],
-            'id',
+            ['attribute'=>'id',
+                'contentOptions'=>['width'=>'30px'],
+            ],
             'title',
-            'content:ntext',
             'tags:ntext',
-            'status',
-            'create_time:datetime',
-            'update_time:datetime',
-            'author_id',
+            [
+                'attribute'=>'status',
+                'value'=>'status0.name',
+                'filter'=>\common\models\Poststatus::find()
+                    ->select(['name','id'])
+                    ->orderBy('position')
+                    ->indexBy('id')
+                    ->column(),
+            ],
+            [
+                'class' => \yii\grid\DataColumn::className(),
+                'attribute' => 'update_time',
+                'format' => ['date', 'php:Y-m-d H:i:s'],
+            ],
+            [
+                'class' => \yii\grid\DataColumn::className(),
+                'attribute' => 'name0',
+                'label' => '作者姓名',
+                'value' => 'name0.nickname',
+            ],
 
             ['class' => 'yii\grid\ActionColumn'],
         ],

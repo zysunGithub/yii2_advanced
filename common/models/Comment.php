@@ -45,14 +45,29 @@ class Comment extends \yii\db\ActiveRecord
     public function attributeLabels()
     {
         return [
-            'id' => 'ID',
-            'content' => 'Content',
-            'status' => 'Status',
-            'create_time' => 'Create Time',
-            'userid' => 'Userid',
-            'email' => 'Email',
-            'url' => 'Url',
-            'post_id' => 'Post ID',
+            'id' => '评论ID',
+            'content' => '评论简述',
+            'status' => '评论状态',
+            'create_time' => '创建时间',
         ];
+    }
+
+    public function getUserInfo()
+    {
+        return $this->hasOne(User::className(), ['id' => 'userid']);
+    }
+
+    public function getStatus0()
+    {
+        return $this->hasOne(Commentstatus::className(), ['id' => 'status']);
+    }
+
+    public function getSimpleComment()
+    {
+        //去掉评论中的标签
+        $stripTagStr = strip_tags($this->content);
+        $strLength = mb_strlen($stripTagStr);
+
+        return mb_substr($stripTagStr, 0, 20, 'utf-8').($strLength > 20 ? '……' : '');
     }
 }

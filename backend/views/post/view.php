@@ -8,7 +8,7 @@ use yii\widgets\DetailView;
 date_default_timezone_set('Asia/Shanghai');
 
 $this->title = $model->title;
-$this->params['breadcrumbs'][] = ['label' => 'Posts', 'url' => ['index']];
+$this->params['breadcrumbs'][] = ['label' => '文章', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="post-view">
@@ -29,7 +29,6 @@ $this->params['breadcrumbs'][] = $this->title;
     <?= DetailView::widget([
         'model' => $model,
         'attributes' => [
-            'id',
             'title',
             'content:ntext',
             'tags:ntext',
@@ -47,7 +46,7 @@ $this->params['breadcrumbs'][] = $this->title;
             ],
             [
                 'label' => '作者姓名',
-                'value' => $model->name0->username,
+                'value' => $model->name0->nickname,
             ],
         ],
         'template' => '<tr><th style="width: 120px">{label}</th><td>{value}</td></tr>'

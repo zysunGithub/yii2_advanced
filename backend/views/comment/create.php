@@ -4,13 +4,13 @@ use yii\helpers\Html;
 
 
 /* @var $this yii\web\View */
-/* @var $model common\models\Post */
+/* @var $model common\models\Comment */
 
-$this->title = '创建文章';
-$this->params['breadcrumbs'][] = ['label' => '文章', 'url' => ['index']];
+$this->title = 'Create Comment';
+$this->params['breadcrumbs'][] = ['label' => 'Comments', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
-<div class="post-create">
+<div class="comment-create">
 
     <h1><?= Html::encode($this->title) ?></h1>
 

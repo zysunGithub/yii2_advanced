@@ -34,8 +34,8 @@ class Post extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['id', 'title', 'content', 'status', 'author_id'], 'required'],
-            [['id', 'status', 'create_time', 'update_time', 'author_id'], 'integer'],
+            [['title', 'content', 'status', 'author_id'], 'required'],
+            [['status', 'create_time', 'update_time', 'author_id'], 'integer'],
             [['content', 'tags'], 'string'],
             [['title'], 'string', 'max' => 128],
         ];
@@ -47,7 +47,6 @@ class Post extends \yii\db\ActiveRecord
     public function attributeLabels()
     {
         return [
-            'id' => 'ID',
             'title' => '标题',
             'content' => '内容',
             'tags' => '标签',

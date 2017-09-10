@@ -67,6 +67,8 @@ class PostController extends Controller
      */
     public function actionView($id)
     {
+//        self::printDataTest($this->findModel($id));
+//        exit(0);
         return $this->render('view', [
             'model' => $this->findModel($id),
         ]);
@@ -136,5 +138,12 @@ class PostController extends Controller
         } else {
             throw new NotFoundHttpException('The requested page does not exist.');
         }
+    }
+
+    private static function printDataTest($data)
+    {
+        echo '<pre>';
+        print_r($data);
+        echo '</pre>';
     }
 }
