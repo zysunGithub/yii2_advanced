@@ -70,4 +70,12 @@ class Comment extends \yii\db\ActiveRecord
 
         return mb_substr($stripTagStr, 0, 20, 'utf-8').($strLength > 20 ? '……' : '');
     }
+
+    public function approve()
+    {
+        $this->status = 2;
+
+        //save时会先进行数据校验，校验失败则不会保存数据
+        return $this->save();
+    }
 }

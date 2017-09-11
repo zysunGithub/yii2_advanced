@@ -30,6 +30,9 @@ $this->params['breadcrumbs'][] = $this->title;
             ],
             [
                 'attribute' => 'status',
+                'contentOptions' => function($model) {
+                    return ($model->status == 1) ? ['class' => 'bg-danger'] : [];
+                },
                 'value' => 'status0.name',
                 'filter'=> \common\models\Commentstatus::find()
                             ->select(['name','id'])
@@ -49,7 +52,6 @@ $this->params['breadcrumbs'][] = $this->title;
             // 'email:email',
             // 'url:url',
             // 'post_id',
-
             [
                 'class' => 'yii\grid\ActionColumn',
                 'template' => '{view} {update} {approve} {delete}',
